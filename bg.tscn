@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://jhp72rtia1ic"]
+
+[ext_resource type="Texture2D" uid="uid://bbm8cen81airl" path="res://Woods/backrounds/back1.png" id="1_e8j8q"]
+[ext_resource type="Script" uid="uid://c4gmf6wbed5ce" path="res://bg.gd" id="1_iq1of"]
+[ext_resource type="Texture2D" uid="uid://boq24clllk8f4" path="res://Woods/backrounds/back2.png" id="2_iq1of"]
+[ext_resource type="Texture2D" uid="uid://pa0msuj8ba02" path="res://Woods/backrounds/back3.png" id="3_36ycx"]
+
+[node name="BG" type="ParallaxBackground" unique_id=435383289]
+script = ExtResource("1_iq1of")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="." unique_id=1608037425]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(854, 0)
+
+[node name="Back1" type="Sprite2D" parent="ParallaxLayer" unique_id=1975785585]
+position = Vector2(455.00003, 326.5)
+scale = Vector2(1.4803922, 2.1209152)
+texture = ExtResource("1_e8j8q")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="." unique_id=2066470582]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(856, 0)
+
+[node name="ConceptOfNaturalDesignInTreesAndPlantsWithBirdsAtTheSunsetTime31965113500" type="Sprite2D" parent="ParallaxLayer3" unique_id=728954898]
+position = Vector2(431.50006, 402.50003)
+scale = Vector2(1.3690097, 0.6450841)
+texture = ExtResource("2_iq1of")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="." unique_id=1804884782]
+motion_mirroring = Vector2(855, 0)
+
+[node name="Back3" type="Sprite2D" parent="ParallaxLayer2" unique_id=1046420383]
+position = Vector2(431, 281)
+scale = Vector2(1.3674121, 0.24940053)
+texture = ExtResource("3_36ycx")
