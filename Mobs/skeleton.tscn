@@ -85,7 +85,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Death",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -128,6 +128,12 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1f85"]
 radius = 120.004166
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hjwy"]
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1f85"]
+size = Vector2(18, 3)
+
 [node name="Skeleton" type="CharacterBody2D" unique_id=766081953]
 script = ExtResource("1_7hjwy")
 
@@ -136,14 +142,29 @@ position = Vector2(0.99999607, -4.9999995)
 scale = Vector2(0.6666667, 0.6266666)
 sprite_frames = SubResource("SpriteFrames_bwne6")
 animation = &"Death"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=785111792]
 shape = SubResource("CapsuleShape2D_md1ud")
 
 [node name="Detector" type="Area2D" parent="." unique_id=1102790988]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" unique_id=1430025333]
 shape = SubResource("CircleShape2D_k1f85")
 
+[node name="Death" type="Area2D" parent="." unique_id=407276539]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death" unique_id=882778766]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_7hjwy")
+
+[node name="Death2" type="Area2D" parent="." unique_id=74008174]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death2" unique_id=1725023736]
+shape = SubResource("RectangleShape2D_k1f85")
+
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
+[connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
+[connection signal="body_entered" from="Death2" to="." method="_on_death_2_body_entered"]
