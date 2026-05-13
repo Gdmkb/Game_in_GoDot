@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bk0lyl8eff4n5"]
+
+[ext_resource type="Texture2D" uid="uid://bba7g542k6u7o" path="res://Woods/decoration/Large Tent.png" id="1_447rc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1gkx"]
+radius = 24.020824
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpihu"]
+atlas = ExtResource("1_447rc")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m507v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpihu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shop" type="Area2D" unique_id=1624124329]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=380398420]
+shape = SubResource("CircleShape2D_i1gkx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1637515263]
+position = Vector2(-0.28125095, -4.25)
+scale = Vector2(0.5891926, 0.41796878)
+sprite_frames = SubResource("SpriteFrames_m507v")
+autoplay = "default"

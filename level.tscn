@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://foyem1indumb"]
 
 [ext_resource type="PackedScene" uid="uid://dy4b0g03xgdqs" path="res://Player/player.tscn" id="1_1ainy"]
-[ext_resource type="Script" uid="uid://bd62n33j1psf" path="res://Player/player.gd" id="2_n6hdu"]
+[ext_resource type="Script" uid="uid://bmg0h1ds7lgdg" path="res://level.gd" id="1_n6hdu"]
+[ext_resource type="PackedScene" uid="uid://bk0lyl8eff4n5" path="res://Build.tscn" id="3_f2txt"]
 [ext_resource type="Texture2D" uid="uid://bbm8cen81airl" path="res://Woods/backrounds/back1.png" id="3_km5ld"]
 [ext_resource type="Texture2D" uid="uid://boq24clllk8f4" path="res://Woods/backrounds/back2.png" id="4_i2t4f"]
 [ext_resource type="Texture2D" uid="uid://cs1o2okltski3" path="res://Woods/pngtree-pixel-adventure-arcade-8-bit-style-quest-gameplay-scene-with-ground-png-image_2946509.png" id="6_2orkt"]
+[ext_resource type="Texture2D" uid="uid://d3420e6188lxt" path="res://Woods/light/circle.png" id="7_n6hdu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aicyk"]
 texture = ExtResource("6_2orkt")
@@ -548,9 +550,14 @@ var gold = preload(\"res://Collectables/gold.tscn\")
 	#add_child(goldTemp)
 "
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n6hdu"]
+polygon = PackedVector2Array(-5084, 525, -5084, 635, 5241, 651, 5242, 533)
+
 [node name="Level" type="Node2D" unique_id=1150437559]
+script = ExtResource("1_n6hdu")
 
 [node name="BG" type="ParallaxBackground" parent="." unique_id=435383289]
+layer = -1
 offset = Vector2(0, 250)
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 250)
@@ -576,6 +583,9 @@ texture = ExtResource("4_i2t4f")
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="BG" unique_id=1804884782]
 motion_mirroring = Vector2(855, 0)
 
+[node name="Shop" parent="." unique_id=1624124329 instance=ExtResource("3_f2txt")]
+position = Vector2(338, 490)
+
 [node name="TileMap" type="TileMap" parent="." unique_id=2073920068]
 tile_set = SubResource("TileSet_8b0r0")
 format = 2
@@ -586,7 +596,6 @@ position = Vector2(261, 462)
 
 [node name="Player" parent="Player" unique_id=2038988915 instance=ExtResource("1_1ainy")]
 position = Vector2(-97, 37)
-script = ExtResource("2_n6hdu")
 
 [node name="Mobs" type="Node2D" parent="." unique_id=688329734]
 
@@ -617,4 +626,25 @@ script = SubResource("GDScript_i2t4f")
 wait_time = 3.0
 autostart = true
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1800255596]
+energy = 0.95
+blend_mode = 1
+range_layer_min = -1
+
+[node name="DayNight" type="Timer" parent="." unique_id=914347]
+wait_time = 20.0
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=38153893]
+position = Vector2(338.00003, 490)
+scale = Vector2(0.16968748, 0.14500001)
+color = Color(0.8352941, 0.7490196, 0.58431375, 1)
+energy = 1.5
+shadow_enabled = true
+texture = ExtResource("7_n6hdu")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1592918248]
+occluder = SubResource("OccluderPolygon2D_n6hdu")
+
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
+[connection signal="timeout" from="DayNight" to="." method="_on_day_night_timeout"]

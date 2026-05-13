@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dy4b0g03xgdqs"]
 
+[ext_resource type="Script" uid="uid://bd62n33j1psf" path="res://Player/player.gd" id="1_00tjw"]
 [ext_resource type="Texture2D" uid="uid://dr1dahc3vwff4" path="res://Woods/character/Fall.png" id="1_gwnis"]
 [ext_resource type="Texture2D" uid="uid://b3rb4reqdel5a" path="res://Woods/character/Attack1.png" id="1_od3ui"]
 [ext_resource type="Texture2D" uid="uid://c4io102jtu8h3" path="res://Woods/character/Attack2.png" id="2_00tjw"]
@@ -8,20 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dcfaudjb64nfr" path="res://Woods/character/Hit.png" id="3_x3vf3"]
 [ext_resource type="Texture2D" uid="uid://bn7yjaxa3bf81" path="res://Woods/character/Death.png" id="4_apopc"]
 [ext_resource type="Texture2D" uid="uid://lw3lwd4lh25f" path="res://Woods/character/Run.png" id="4_vtle1"]
-
-[sub_resource type="GDScript" id="GDScript_od3ui"]
-script/source = "extends CharacterBody2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="Texture2D" uid="uid://d3420e6188lxt" path="res://Woods/light/circle.png" id="10_x3vf3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvfyp"]
 
@@ -184,14 +172,6 @@ region = Rect2(1288, 0, 184, 137)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6rl0i"]
 atlas = ExtResource("4_apopc")
 region = Rect2(1104, 0, 184, 137)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7x5p2"]
-atlas = ExtResource("4_apopc")
-region = Rect2(1288, 0, 184, 137)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6eb1q"]
-atlas = ExtResource("4_apopc")
-region = Rect2(920, 0, 184, 137)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvbyc"]
 atlas = ExtResource("1_gwnis")
@@ -368,12 +348,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6rl0i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7x5p2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6eb1q")
 }],
 "loop": false,
 "name": &"Slide",
@@ -417,6 +391,20 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Attack"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"combo1"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_c4i3b"]
 length = 0.8
@@ -443,6 +431,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Attack2"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"combo1"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_uvbbp"]
@@ -724,8 +726,11 @@ _data = {
 &"Walk": SubResource("Animation_gxi5p")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x3vf3"]
+polygon = PackedVector2Array(-3, 13, 3, 13, 4, 14, -4, 14)
+
 [node name="Player" type="CharacterBody2D" unique_id=2038988915]
-script = SubResource("GDScript_od3ui")
+script = ExtResource("1_00tjw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=555037060]
 shape = SubResource("CapsuleShape2D_hvfyp")
@@ -736,7 +741,6 @@ scale = Vector2(0.33, 0.3530628)
 sprite_frames = SubResource("SpriteFrames_l8h54")
 animation = &"Attack"
 autoplay = "Idle"
-frame = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=757134373]
 zoom = Vector2(2.4, 2.4)
@@ -749,3 +753,12 @@ drag_horizontal_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=157252567]
 libraries/ = SubResource("AnimationLibrary_yxu6j")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=421554939]
+position = Vector2(-7.6293945e-06, 0.49999523)
+scale = Vector2(0.040625002, 0.043750007)
+energy = 0.5
+texture = ExtResource("10_x3vf3")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1570233831]
+occluder = SubResource("OccluderPolygon2D_x3vf3")
