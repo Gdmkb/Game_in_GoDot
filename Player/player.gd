@@ -15,7 +15,7 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var anim = $AnimatedSprite2D
-@onready var animPlayer = $AnimationPlayer
+@onready var animPlayer = $"AnimationPlayer"
 var health = 100
 var gold = 0
 var state = MOVE
@@ -110,7 +110,7 @@ func attack_state():
 	
 func attack2_state ():
 	if Input.is_action_pressed("attack") and combo == true:
-		state = ATTACK3
+		state = ATTACK3 #change ATTACK3 at ATTACK2
 	animPlayer.play("Attack2")
 	await animPlayer.animation_finished
 	state = MOVE

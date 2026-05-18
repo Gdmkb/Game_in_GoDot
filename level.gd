@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var light = $DirectionalLight2D
+@onready var light = $Light/DirectionalLight2D
 @onready var pointlight = $PointLight2D
 @onready var day_text = $"CanvasLayer/Day Text"
 @onready var animPlayer = $CanvasLayer/AnimationPlayer
