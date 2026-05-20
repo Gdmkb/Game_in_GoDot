@@ -15,6 +15,10 @@ run/main_scene="uid://kl261kf02ckf"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Signals="*uid://dcei7w3cfb8p1"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")

@@ -551,7 +551,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta):
 	text = \"GOLD: \" + str($\"../../Player/Player\".gold)
 "
 
@@ -737,7 +737,7 @@ libraries/ = SubResource("AnimationLibrary_8cye3")
 
 [node name="Mobs" type="Node2D" parent="." unique_id=707736530]
 
-[node name="CharacterBody2D" parent="Mobs" unique_id=1987658075 instance=ExtResource("8_km5ld")]
+[node name="Mushroom" parent="Mobs" unique_id=1987658075 instance=ExtResource("8_km5ld")]
 position = Vector2(-44, 493)
 
 [node name="Player" type="Node2D" parent="." unique_id=851396518]

@@ -380,7 +380,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avi24"]
-size = Vector2(11.5, 13.5)
+size = Vector2(15.75, 13.5)
 
 [node name="Mushroom" type="CharacterBody2D" unique_id=1987658075]
 collision_layer = 4
@@ -407,7 +407,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackRange" unique_id=386265136]
-position = Vector2(12, 3.25)
+position = Vector2(18, 3)
 shape = SubResource("RectangleShape2D_avi24")
 
 [connection signal="body_shape_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_shape_entered"]

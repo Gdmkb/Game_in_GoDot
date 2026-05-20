@@ -22,6 +22,7 @@ var state = MOVE
 var run_speed = 1
 var combo = false
 var attack_cooldown = false
+var player_pos
 
 func _physics_process(delta):
 	match state:
@@ -54,6 +55,9 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+	player_pos = self.global_position
+	Signals.emit_signal("player_position_update", player_pos)
+	
 func move_state ():
 	var direction = Input.get_axis("left", "right")
 	if direction:
